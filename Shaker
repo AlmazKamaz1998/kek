@@ -1,0 +1,43 @@
+#include <iostream> 
+
+using namespace std;
+
+int main()
+{
+	int N = 0;
+	cin >> N;
+	int a[1000];
+	for (int i = 0; i < N; ++i)
+	{
+		cin >> a[i];
+		if (a[i + 1] > a[i])
+		{
+			cout << a[i] << endl;
+		}
+	}
+	int min = 1;
+	int max = N - 1;
+	while(min <= max)
+	{ 
+	     for (int i = max; i >= min; i--)
+		    if (a[i - 1] > a[i])
+		    {
+			     int s = a[i];
+			     a[i] = a[i - 1];
+			     a[i - 1] = s;
+		    }
+			min++;
+		    for (int i = min; i <= max; i++)
+				if (a[i - 1] > a[i])
+				{
+					int s = a[i];
+					a[i] = a[i - 1];
+					a[i - 1] = s;
+				}
+				max--;
+	}
+	for (int i = 0; i < N; i++)
+		cout << a[i] << endl;
+	system("pause");
+	return 0;
+}
